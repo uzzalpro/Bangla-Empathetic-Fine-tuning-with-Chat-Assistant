@@ -11,20 +11,19 @@ from src.core.model_pusher import ModelPusher
 
 
 from src.entity.config_entity import (DatasetProcessorConfig,
-                                          DataValidationConfig,
-                                          DataTransformationConfig,
+                                          UnslothStrategyConfig,
                                           ModelTrainerConfig,
                                           ModelEvaluationConfig,
                                           ModelPusherConfig
                                           )
 
 
-from src.entity.artifact_entity import (DataIngestionArtifact,
-                                            DataValidationArtifact,
-                                            DataTransformationArtifact,
-                                            ModelTrainerArtifact,
-                                            ModelEvaluationArtifact,
-                                            ModelPusherArtifact
+from src.entity.adapter_entity import (DatasetProcessorAdapter,
+                                            UnslothStrategyAdapter,
+                                            DataTransformationAdapter,
+                                            ModelTrainerAdapter,
+                                            ModelEvaluationAdapter,
+                                            ModelPusherAdapter
                                             )
 
 
@@ -32,8 +31,7 @@ from src.entity.artifact_entity import (DataIngestionArtifact,
 class FineTuningPipeline:
     def __init__(self):
         self.data_ingestion_config = DatasetProcessorConfig()
-        self.data_validation_config = DataValidationConfig()
-        self.data_transformation_config = DataTransformationConfig()
+        self.unsloth_strategy_config = UnslothStrategyConfig()
         self.model_trainer_config = ModelTrainerConfig()
         self.model_evaluation_config = ModelEvaluationConfig()
         self.model_pusher_config = ModelPusherConfig()
@@ -42,7 +40,7 @@ class FineTuningPipeline:
     
 
 
-    def start_data_ingestion(self) -> DataIngestionArtifact:
+    def start_data_ingestion(self) -> DatasetProcessorAdapter:
         """
         This method of TrainPipeline class is responsible for starting data ingestion component
         """
@@ -61,7 +59,7 @@ class FineTuningPipeline:
         
 
 
-    def start_data_validation(self, data_ingestion_artifact: DataIngestionArtifact) -> DataValidationArtifact:
+    def start_data_validation(self, data_ingestion_artifact: DatasetProcessorAdapter) -> DataValidationArtifact:
         """
         This method of TrainPipeline class is responsible for starting data validation component
         """
@@ -84,19 +82,6 @@ class FineTuningPipeline:
 
         except Exception as e:
             raise BangliEmpathyException(e, sys) from e
-    
-    def start_data_transformation(self, data_ingestion_artifact: DataIngestionArtifact, data_validation_artifact: DataValidationArtifact) -> DataTransformationArtifact:
-        """
-        This method of TrainPipeline class is responsible for starting data transformation component
-        """
-        try:
-            data_transformation = DataTransformation(data_ingestion_artifact=data_ingestion_artifact,
-                                                     data_transformation_config=self.data_transformation_config,
-                                                     data_validation_artifact=data_validation_artifact)
-            data_transformation_artifact = data_transformation.initiate_data_transformation()
-            return data_transformation_artifact
-        except Exception as e:
-            raise HeartdieseaseException(e, sys)
 
 
     def start_model_trainer(self, data_transformation_artifact: DataTransformationArtifact) -> ModelTrainerArtifact:

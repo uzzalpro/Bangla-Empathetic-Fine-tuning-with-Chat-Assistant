@@ -7,16 +7,12 @@ class DatasetProcessorAdapter:
     test_file_path:str 
 
 @dataclass
-class DataValidationAdapter:
-    validation_status:bool
-    message: str
-    drift_report_file_path: str
+class UnslothStrategyAdapter:
+    model:str
+    max_seq_length:int
+    tokenizer:str
+    train_cfg:dict
 
-@dataclass
-class DataTransformationAdapter:
-    transformed_object_file_path:str 
-    transformed_train_file_path:str
-    transformed_test_file_path:str
 
 @dataclass
 class ClassificationMetricAdapter: 
