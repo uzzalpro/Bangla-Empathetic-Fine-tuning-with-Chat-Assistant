@@ -1,5 +1,5 @@
 
-### **Project: Bangla Empathetic Fine-tuning with Chat Assistant**
+# **Project: Bangla Empathetic Fine-tuning with Chat Assistant**
 
 This notebook implements a complete pipeline for fine-tuning LLaMA 3.1-8B-Instruct using parameter-efficient fine-tuning (LoRA/Unsloth) for empathetic response generation.
 ### Requirements Implemented:
@@ -10,7 +10,7 @@ This notebook implements a complete pipeline for fine-tuning LLaMA 3.1-8B-Instru
 5. OOP Design with Strategy Pattern
 6. Resource optimization (gradient checkpointing, mixed precision)
 
-# **DatasetProcessor** 
+### **DatasetProcessor** 
 
 
 * We load Bengali empathetic conversations from CSV and clean them.
@@ -18,6 +18,7 @@ This notebook implements a complete pipeline for fine-tuning LLaMA 3.1-8B-Instru
 * We make Dataset splitting
 
 **“DatasetProcessor isolates data representation logic so changes in prompts or cleaning don’t affect training code or experimental validity.”**
+
 
 ## **Load the Model**
 - We abstract model loading using a Strategy Pattern.
