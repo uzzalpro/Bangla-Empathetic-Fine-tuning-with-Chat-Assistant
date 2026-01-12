@@ -62,7 +62,7 @@ This notebook implements a complete pipeline for fine-tuning LLaMA 3.1-8B-Instru
 
 **The “same model” behaves differently depending on how it’s loaded.**
 
-### **Evaluator**
+## **Evaluator**
 Evaluate with BLEU, ROUGE, Perplexity.
 
 **BLEU** → N-gram overlap,   **ROUGE** → Recall-oriented overlap,   **Perplexity** → Language fluency
@@ -75,7 +75,8 @@ Evaluate with BLEU, ROUGE, Perplexity.
 
 **Metrics are not model quality — they are signals.**
 
-### **Human Evaluation (Empathy)**
+### **Human Evaluation (Empathy)**  
+
 **Empathy**, **Tone**, **Helpfulness** (1–5 scale)
 
 *Manual scoring of emotional quality.*
